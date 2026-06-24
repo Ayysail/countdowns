@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,113 +9,150 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
 
 <style>
+*{
+    box-sizing:border-box;
+}
+
 body{
-    font-family: Arial, sans-serif;
-    background: linear-gradient(135deg,#0f172a,#1e293b);
-    color:white;
     margin:0;
-    padding:20px;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
     text-align:center;
+    font-family:Arial, sans-serif;
+
+    background-image:url("https://i.imgur.com/knMAiWH.jpeg");
+    background-repeat:repeat;
+}
+
+.container{
+    background:rgba(0,0,0,0.75);
+    backdrop-filter:blur(4px);
+    padding:35px;
+    border-radius:20px;
+    max-width:750px;
+    width:90%;
+    color:white;
+    box-shadow:0 0 25px rgba(0,0,0,.5);
 }
 
 .logo{
     width:150px;
-    border-radius:20px;
-    margin-top:20px;
+    border-radius:15px;
 }
 
 h1{
     font-family:'Montserrat',sans-serif;
-    font-size:2.5rem;
+    font-size:3rem;
     font-weight:900;
-    margin-top:15px;
+    margin:15px 0;
 }
 
 #countdown{
     font-family:'Montserrat',sans-serif;
-    font-size:3rem;
+    font-size:3.5rem;
     font-weight:900;
-    background:#111827;
-    display:inline-block;
-    padding:20px 35px;
-    border-radius:18px;
-    margin:20px 0;
-    box-shadow:0 0 25px rgba(255,255,255,.15);
-}
-
-.qa{
-    max-width:900px;
-    margin:30px auto;
-    text-align:left;
     background:rgba(255,255,255,0.08);
-    padding:25px;
-    border-radius:16px;
+    padding:20px;
+    border-radius:15px;
+    margin:25px 0;
+    word-wrap:break-word;
 }
 
-.qa h2{
-    text-align:center;
+.subtitle{
+    font-size:1.2rem;
+    line-height:1.5;
+    margin-bottom:25px;
 }
 
-.question{
+.discord-btn{
+    display:inline-block;
+    background:#5865F2;
+    color:white;
+    text-decoration:none;
+    padding:16px 28px;
+    border-radius:12px;
     font-weight:bold;
-    margin-top:18px;
-    color:#60a5fa;
+    font-size:1rem;
+    transition:0.2s;
 }
 
-.answer{
-    margin-top:5px;
+.discord-btn:hover{
+    transform:scale(1.05);
+}
+
+.footer{
+    margin-top:20px;
+    opacity:0.8;
+    font-size:0.9rem;
 }
 </style>
 </head>
 <body>
 
-<img class="logo" src="https://i.imgur.com/XeQ6eNp.png" alt="SAB Wiki RNG Logo">
+<div class="container">
 
-<h1>SAB WIKI RNG GAME COUNTDOWN</h1>
+    <img
+        class="logo"
+        src="https://i.imgur.com/XeQ6eNp.png"
+        alt="SAB Wiki RNG Logo"
+    >
 
-<div id="countdown">Loading...</div>
+    <h1>SAB WIKI RNG COUNTDOWN</h1>
 
-<div class="qa">
-    <h2>Q & A</h2>
+    <div id="countdown">Loading...</div>
 
-    <div class="question">Q: WHAT IS SAB RNG?</div>
-    <div class="answer">
-        A: An upcoming RNG game where you roll Wikians — people from the SAB Wiki.
+    <div class="subtitle">
+        A countdown to SAB WIKI RNG, made by ayysail.
     </div>
 
-    <div class="question">Q: WHAT IS COUNTDOWNS?</div>
-    <div class="answer">
-        A: Countdowns is a website used for RNG game countdowns. Right now it is
-    counting down to SAB Wiki RNG's release.
+    <a
+        class="discord-btn"
+        href="https://discord.gg/kqEQTg5NV9"
+        target="_blank"
+    >
+        Join SABW RNG Countdowns Discord Server (Unofficial)
+    </a>
+
+    <div class="footer">
+        This website is unofficial and is not affiliated with the SAB Wiki RNG development team.
     </div>
 
-    <div class="question">Q: WHO MADE THIS GAME AND IS COUNTDOWNS MADE BY THE DEV TEAM?</div>
-    <div class="answer">
-        A: No. Countdowns is an unofficial website for the game's countdown.
-        The game is being made by Yiggy and another person.
-    </div>
 </div>
 
 <script>
-const targetDate = new Date("July 1, 2026 00:00:00").getTime();
+const targetDate = new Date("June 26, 2026 00:00:00").getTime();
 
-function updateCountdown(){
+function updateCountdown() {
     const now = new Date().getTime();
     const distance = targetDate - now;
 
-    if(distance <= 0){
+    if (distance <= 0) {
         document.getElementById("countdown").innerHTML =
-            "🎉 SAB WIKI RNG IS OUT NOW!";
+            "🎉 SAB WIKI RNG COUNTDOWN HAS ENDED!";
         return;
     }
 
     const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    const hours = Math.floor(
+        (distance % (1000 * 60 * 60 * 24)) /
+        (1000 * 60 * 60)
+    );
+    const minutes = Math.floor(
+        (distance % (1000 * 60 * 60)) /
+        (1000 * 60)
+    );
+    const seconds = Math.floor(
+        (distance % (1000 * 60)) /
+        1000
+    );
 
     document.getElementById("countdown").innerHTML =
-        `${days}d ${hours}h ${minutes}m ${seconds}s`;
+        days + "d " +
+        hours + "h " +
+        minutes + "m " +
+        seconds + "s";
 }
 
 updateCountdown();
@@ -123,3 +161,5 @@ setInterval(updateCountdown, 1000);
 
 </body>
 </html>
+```
+
